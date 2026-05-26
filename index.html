@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>WeatherPlay Desktop</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <div class="weather-scene" aria-hidden="true">
+      <div class="sun-core"></div>
+      <div class="cloud cloud-one"></div>
+      <div class="cloud cloud-two"></div>
+      <div class="rain-field" id="rainField"></div>
+    </div>
+
+    <main class="app-shell">
+      <aside class="sidebar" aria-label="Weather controls">
+        <div class="brand">
+          <div class="brand-mark" aria-hidden="true">W</div>
+          <div>
+            <p class="eyebrow">Desktop weather lab</p>
+            <h1>WeatherPlay</h1>
+          </div>
+        </div>
+
+        <form class="search-panel" id="searchForm">
+          <label for="cityInput">City</label>
+          <div class="search-row">
+            <input id="cityInput" name="city" type="search" autocomplete="off" placeholder="Search city" list="cityOptions">
+            <button type="submit" title="Search city" aria-label="Search city">
+              <span aria-hidden="true">Go</span>
+            </button>
+          </div>
+          <datalist id="cityOptions"></datalist>
+          <button class="ghost-button" id="locationButton" type="button">Use Demo Location</button>
+          <p class="status-text" id="apiStatus">Live weather loads on deployment.</p>
+        </form>
+
+        <section class="control-group" aria-label="Preferences">
+          <div class="segmented" role="group" aria-label="Temperature unit">
+            <button class="segment active" id="unitC" type="button" aria-pressed="true">C</button>
+            <button class="segment" id="unitF" type="button" aria-pressed="false">F</button>
+          </div>
+          <label class="switch-row">
+            <span>Ambient sound</span>
+            <input id="soundToggle" type="checkbox">
+          </label>
+          <label class="switch-row">
+            <span>Reduced motion</span>
+            <input id="motionToggle" type="checkbox">
+          </label>
+          <label class="switch-row">
+            <span>AMOLED dark mode</span>
+            <input id="themeToggle" type="checkbox">
+          </label>
+        </section>
+
+        <section class="favorites">
+          <div class="section-heading">
+            <h2>Favorites</h2>
+            <button id="favoriteButton" type="button">Add</button>
+          </div>
+          <div class="favorite-list" id="favoriteList"></div>
+        </section>
+      </aside>
+
+      <section class="dashboard" aria-live="polite">
+        <header class="topbar">
+          <div>
+            <p class="eyebrow" id="localTime">Updated now</p>
+            <h2 id="cityName">Dhaka</h2>
+          </div>
+          <div class="condition-pill" id="conditionPill">Sunny</div>
+        </header>
+
+        <section class="hero-grid">
+          <article class="current-panel">
+            <div class="weather-icon" id="weatherIcon" aria-hidden="true">
+              <span class="icon-sun"></span>
+            </div>
+            <div>
+              <p class="temp" id="temperature">32°</p>
+              <p class="condition" id="conditionText">Bright and warm</p>
+              <p class="feels" id="feelsLike">Feels like 35°</p>
+            </div>
+          </article>
+
+          <article class="avatar-panel">
+            <div class="avatar" id="weatherAvatar" aria-hidden="true">
+              <div class="avatar-head"></div>
+              <div class="avatar-body"></div>
+            </div>
+            <div>
+              <h3 id="avatarTitle">Sunny mode</h3>
+              <p id="avatarAdvice">Light clothes, sunglasses, and water are the right call.</p>
+            </div>
+          </article>
+        </section>
+
+        <section class="metric-grid" id="metricGrid" aria-label="Current weather metrics"></section>
+
+        <section class="content-grid">
+          <article class="panel wide-panel">
+            <div class="section-heading">
+              <h2>Hourly Forecast</h2>
+              <div class="small-note">Click any hour</div>
+            </div>
+            <div class="hourly-strip" id="hourlyStrip"></div>
+            <div class="hour-detail" id="hourDetail"></div>
+          </article>
+
+          <article class="panel">
+            <div class="section-heading">
+              <h2>Outfit</h2>
+            </div>
+            <div class="recommendation" id="outfitSuggestion"></div>
+          </article>
+
+          <article class="panel">
+            <div class="section-heading">
+              <h2>Activity</h2>
+            </div>
+            <div class="recommendation" id="activitySuggestion"></div>
+          </article>
+        </section>
+
+        <section class="content-grid lower-grid">
+          <article class="panel forecast-panel">
+            <div class="section-heading">
+              <h2>7-Day Forecast</h2>
+            </div>
+            <div class="forecast-list" id="forecastList"></div>
+          </article>
+
+          <article class="panel map-panel">
+            <div class="section-heading">
+              <h2>Weather Map</h2>
+              <div class="map-layers" role="group" aria-label="Map layers">
+                <button class="layer active" data-layer="rain" type="button">Rain</button>
+                <button class="layer" data-layer="wind" type="button">Wind</button>
+                <button class="layer" data-layer="heat" type="button">Heat</button>
+              </div>
+            </div>
+            <div class="map-canvas" id="mapCanvas">
+              <div class="map-grid"></div>
+              <div class="map-city" id="mapCity">Dhaka</div>
+              <div class="map-marker"></div>
+            </div>
+          </article>
+
+          <article class="panel game-panel">
+            <div class="section-heading">
+              <h2>Mini Game</h2>
+              <button id="startGame" type="button">Start</button>
+            </div>
+            <div class="game-area" id="gameArea">
+              <div class="game-target" id="gameTarget">+</div>
+              <p id="gameStatus">Start the round, then click the moving weather target.</p>
+            </div>
+          </article>
+        </section>
+      </section>
+    </main>
+
+    <script src="app.js"></script>
+  </body>
+</html>
