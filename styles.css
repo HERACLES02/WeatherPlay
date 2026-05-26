@@ -36,11 +36,11 @@ body {
 
 body.amoled-theme {
   --bg: #000000;
-  --ink: #f4f8ff;
-  --muted: #9ba8ba;
+  --ink: #ffffff;
+  --muted: #d7dde8;
   --panel: rgba(0, 0, 0, 0.9);
   --panel-strong: #050505;
-  --line: rgba(255, 255, 255, 0.14);
+  --line: rgba(255, 255, 255, 0.24);
   --accent: #00d8c7;
   --accent-2: #ffd166;
   --accent-3: #ff5f6d;
@@ -421,12 +421,75 @@ input[type="checkbox"] {
   background: var(--weather-icon-bg);
 }
 
+.weather-icon .moon-label {
+  max-width: 132px;
+  margin-top: -18px;
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 900;
+  text-align: center;
+}
+
 .icon-sun {
   width: 88px;
   height: 88px;
   border-radius: 50%;
   background: var(--accent-2);
   box-shadow: 0 0 0 22px rgba(242, 180, 65, 0.2), 0 0 70px rgba(242, 180, 65, 0.58);
+}
+
+.icon-moon {
+  position: relative;
+  width: 94px;
+  height: 94px;
+  border-radius: 50%;
+  background: #dfe7f3;
+  box-shadow: 0 0 0 22px rgba(83, 109, 254, 0.12), 0 0 70px rgba(83, 109, 254, 0.32);
+  overflow: hidden;
+}
+
+.icon-moon::after {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 92px;
+  height: 92px;
+  border-radius: 50%;
+  content: "";
+  background: var(--weather-icon-bg);
+}
+
+.icon-moon.phase-new-moon::after {
+  transform: translateX(0);
+}
+
+.icon-moon.phase-waxing-crescent::after {
+  transform: translateX(38px);
+}
+
+.icon-moon.phase-first-quarter::after {
+  transform: translateX(48px);
+}
+
+.icon-moon.phase-waxing-gibbous::after {
+  transform: translateX(72px);
+}
+
+.icon-moon.phase-full-moon::after {
+  transform: translateX(110px);
+}
+
+.icon-moon.phase-waning-gibbous::after {
+  transform: translateX(-72px);
+}
+
+.icon-moon.phase-last-quarter::after,
+.icon-moon.phase-third-quarter::after {
+  transform: translateX(-48px);
+}
+
+.icon-moon.phase-waning-crescent::after {
+  transform: translateX(-38px);
 }
 
 .icon-rain {
@@ -540,9 +603,13 @@ input[type="checkbox"] {
   background: #596477;
 }
 
+.avatar.night .avatar-body {
+  background: #1c2440;
+}
+
 .metric-grid {
   display: grid;
-  grid-template-columns: repeat(6, minmax(100px, 1fr));
+  grid-template-columns: repeat(5, minmax(120px, 1fr));
   gap: 12px;
   margin-bottom: 16px;
 }
@@ -791,6 +858,25 @@ body.amoled-theme .sun-core {
 
 body.amoled-theme .avatar-head {
   background: #c88962;
+}
+
+body.amoled-theme input,
+body.amoled-theme button {
+  color: #ffffff;
+}
+
+body.amoled-theme .metric-value,
+body.amoled-theme .condition,
+body.amoled-theme .temp,
+body.amoled-theme h1,
+body.amoled-theme h2,
+body.amoled-theme h3,
+body.amoled-theme strong {
+  color: #ffffff;
+}
+
+body.amoled-theme .hour-card.active {
+  box-shadow: inset 0 0 0 1px rgba(0, 216, 199, 0.55);
 }
 
 .reduced-motion *,
